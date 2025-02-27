@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta property="og:image" content="https://ccsd.net/_static/images/newdesign/superintendent-selection-search-new.png" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Superintendent Selection Search</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Font Awesome icons (free version)-->
+    <script
+      src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Google fonts-->
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
+    <style>
+      table {
+      	font-size: 1.5rem;
+      }
+
+      @media
+      	  only screen
+          and (max-width: 760px), (min-device-width: 768px)
+          and (max-device-width: 1024px)  {
+      }
+      .table > tbody > tr > td {
+      	padding-top:27px;
+      	border-top: none !important;
+      	}
+      }
+
+      @media
+      	  only screen
+          and (max-width: 760px), (min-device-width: 768px)
+          and (max-device-width: 1024px){
+      .table-striped{
+      	padding: 2.5rem, 2.5rem ;
+      	}
+      }
+      /*
+      	Max width before this PARTICULAR table gets nasty. This query will take effect for any screen smaller than 760px and also iPads specifically.
+      	*/
+      	@media
+      	  only screen
+          and (max-width: 760px), (min-device-width: 768px)
+          and (max-device-width: 1024px)  {
+
+      		/* Force table to not be like tables anymore */
+      		table, thead, tbody, th, td, tr {
+      			display: block;
+      		}
+
+
+      		/* Hide table headers (but not display: none;, for accessibility) */
+      		thead tr {
+      			position: absolute;
+      			top: -9999px;
+      			left: -9999px;
+      		}
+
+          tr {
+            margin: 0 0 1rem 0;
+          }
+
+          tr:nth-child(odd) {
+            background: #ccc;
+          }
+
+      		td {
+      			/* Behave  like a "row" */
+      			border: none;
+      /* 			border-bottom: 1px solid #eee; */
+      			position: relative;
+      			padding-left: 50%;
+      		}
+
+      		td:before {
+      			/* Now like a table header */
+      			position: absolute;
+      			/* Top/left values mimic padding */
+      			top: 0;
+      			left: 6px;
+      			width: 45%;
+      			padding-right: 10px;
+      			white-space: nowrap;
+      		}
+
+      		/*
+      		Label the data
+          You could also use a data-* attribute and content for this. That way "bloats" the HTML, this way means you need to keep HTML and CSS in sync. Lea Verou has a clever way to handle with text-shadow.
+      		*/
+      		td:nth-of-type(1):before { content: "Date"; }
+      		td:nth-of-type(2):before { content: "Event"; }
+      }
+      .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 100px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+      }
+
+      /* Modal Content */
+      .modal-content {
+        background-color: #fefefe;
+        margin-top: auto;
+        margin-right: auto;
+        margin-bottom: auto;
+        margin-left: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+      }
+
+      /* The Close Button */
+      .close {
+        color: #848484;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+      }
+
+      .close:hover,
+      .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+      }
+      button {
+        background: none!important;
+        border: none;
+        padding: 0!important;
+        /*optional*/
+        font-family: arial, sans-serif;
+        /*input has OS specific font-family*/
+        color: #069;
+        text-decoration: underline;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body id="page-top">
+    <!-- Navigation-->
+
+    <!-- Masthead-->
+    <header class="masthead bg-primary text-white text-center">
+      <div class="container d-flex align-items-center flex-column">
+        <!-- Masthead Avatar Image-->
+        <img
+          class="masthead-avatar mb-5"
+          src="assets/img/ccsd-main-logo-white.png"
+          alt="..."
+          style="margin-top: -12rem"
+        />
+        <!-- Masthead Heading-->
+        <h1 class="masthead-heading text-uppercase mb-0">
+          Superintendent Selection Search
+        </h1>
+        <!-- Icon Divider-->
+        <div class="divider-custom divider-light">
+          <div class="divider-custom-line"></div>
+          <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+          <div class="divider-custom-line"></div>
+        </div>
+        <!-- Masthead Subheading-->
+        <p class="masthead-subheading font-weight-light mb-0">
+          This page was created to keep our community informed during the
+          process of finding the next Superintendent of Schools for the Clark
+          County School District (CCSD) and to ensure that opportunities for
+          community input are available to all stakeholders.
+        </p>
+        <div class="divider-custom-icon" style="padding: 1.25rem">
+          <!-- <i class="fas fa-star"></i> -->
+        </div>
+
+        <!--                  <p style="padding:1rem;"></p> -->
+        <p class="masthead-subheading font-weight-light mb-0">
+<!--
+          As part of the superintendent search process, on June 13, 2024, the
+          Board of Trustees approved the Superintendent Search Firm Bid Award
+          Recommendation to contract with Hazard, Young, Attea & Associates, to
+          carry out the Superintendent Search. The superintendent search process
+          is anticipated to take several months, with the goal of selecting a
+          new superintendent by November 1, 2024.
+-->As part of this process, the Board of Trustees approved a contract with Hazard, Young, Attea & Associates on June 13, 2024, to lead the search. The firm has worked closely with the Board to conduct a thorough and comprehensive selection process. The Board of Trustees is in the final stages of its Superintendent search, with the selection scheduled for March 13, 2025.
+
+        </p>
+        <div class="divider-custom-icon" style="padding: 1.25rem">
+          <!-- <i class="fas fa-star"></i>< -->
+        </div>
+        <p class="masthead-subheading font-weight-light mb-0">
+          <strong
+>Finalists, Community Meet and Greet, and Public Interviews:</strong
+          ><!--
+<br />
+          *More information forthcoming.
+-->
+        </p>
+        <div class="divider-custom-icon" style="padding: 1.25rem">
+          <!-- <i class="fas fa-star"></i> -->
+        </div>
+        <!--  <div class="divider-custom-icon" style="padding:1rem;"><i class="fas fa-star"></i></div> -->
+        <div class="divider-custom divider-light">
+          <div class="divider-custom-line"></div>
+          <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+          <div class="divider-custom-line"></div>
+        </div>
+      </div>
+    </header>
+    <!-- Portfolio Section-->
+    <section class="page-section portfolio" id="portfolio">
+      <div class="container">
+        <div class="accordion" id="accordionPanelsStayOpenExample">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+              <button
+                class="accordion-button"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#panelsStayOpen-collapseOne"
+                aria-expanded="true"
+                aria-controls="panelsStayOpen-collapseOne"
+              >
+                <div align="center">
+                  <h2
+                    class="masthead-heading text-uppercase mb-0"
+                    style="color: #666; padding-bottom: 1.5rem"
+                  >
+                    Superintendent Search Timeline, Community Engagement, and
+                    Job Posting Information
+                  </h2>
+                </div>
+              </button>
+            </h2>
+            <div
+              id="panelsStayOpen-collapseOne"
+              class="accordion-collapse collapse show"
+              aria-labelledby="panelsStayOpen-headingOne"
+            >
+              <div class="accordion-body">
+                <table role="table" class="table table-striped">
+                  <thead role="rowgroup">
+                    <tr role="row">
+                      <th role="columnheader">Date</th>
+                      <th role="columnheader">Event</th>
+                    </tr>
+                  </thead>
+
+           
+                    <tr role="row">
+                      <td role="cell" width="auto;">
+                        July 11, 2024<br />at 5 p.m.
+                      </td>
+                      <td role="cell">
+                        <strong>Regular Board Meeting:</strong>
+                        <a
+                          href="https://go.boarddocs.com/nv/ccsdlv/Board.nsf/goto?open&id=D6NPH564A6DC"
+                          target="_blank"
+                          >Planning meeting</a
+                        >
+                      </td>
+                    </tr>
+                    <tr role="row">
+                      <td role="cell" width="auto;">
+                        July 25, 2024<br />at 9 a.m.
+                      </td>
+                      <td role="cell">
+                        <strong
+                          ><a
+                            href="https://go.boarddocs.com/nv/ccsdlv/Board.nsf/goto?open&id=D74L4Y54C63F"
+                            target="_blank"
+                            >Special Board Meeting</a
+                          >:</strong
+                        >
+                        To discuss Engage Phase participants, timeline,
+                        advertising and due diligence options
+                      </td>
+                    </tr>
+                    <tr role="row">
+                      <td role="cell" width="auto;">August & September</td>
+                      <td role="cell">Advertising</td>
+                    </tr>
+                    <tr role="row">
+                      <td role="cell" width="auto;">
+                        August 7, 2024<br />at 4 p.m.
+                      </td>
+                      <td role="cell">
+                        <strong
+                          ><a
+                            href="https://go.boarddocs.com/nv/ccsdlv/Board.nsf/goto?open&id=D7W96K217A30"
+                            target="_target"
+                            >Board Work Session</a
+                          ></strong
+                        >
+                        Focus Group Meeting Schedule Discussion
+                      </td>
+                    </tr>
+
+                    <tr role="row">
+                      <td role="cell" width="auto;">
+                        August 8, 2024<br />at 5 p.m.
+                      </td>
+                      <td role="cell">
+                        <strong>Regular Board Meeting:</strong> Update
+                      </td>
+                    </tr>
+                    <tr role="row">
+                      <td role="cell" width="auto;">
+                        August 22, 2024<br />at 5 p.m.
+                      </td>
+                      <td role="cell">
+                        <strong>Regular Board Meeting:</strong> <a
+                            href="https://go.boarddocs.com/nv/ccsdlv/Board.nsf/goto?open&id=D8CTYS790939" target="_blank">Update</a>
+                      </td>
+                    </tr>
+                    <tr role="row">
+                      <td role="cell" style="min-width:250px;">
+                        August 12, 2024<br />
+                        - September 20, 2024
+                      </td>
+                      <td role="cell" width="auto;">Interviews and focus group meetings<br>
+                        <strong>FOCUS GROUP INFORMATION</strong>
+                        <p style="width:auto;">HYA is conducting focus groups to provide the Board with insight regarding the strengths of the district, challenges that need to be addressed, and desired leadership attributes for the next Superintendent of CCSD.  Together, the survey, focus group information, and district data provide valuable information for the development of the Leadership Profile for recruitment and Board selection.  Invitations to 32 different Focus Group Sessions have been emailed to students, parents, licensed staff, support professionals, school police, administrators, elected officials, chambers of commerce, higher education, special interest groups, community organizations, and education collaborators.  Please check your email for the invitation.  If you did not receive an invitation but would like to be included, please fill out the following form: <a href="https://forms.gle/g3ebvSxaU6rAomA47">https://forms.gle/g3ebvSxaU6rAomA47</a></p>
+                      </td>
+                    </tr>
+                    <tr role="row">
+                      <td role="cell" width="auto;">
+                        August 12, 2024<br />
+                        - September 3, 2024
+                      </td>
+                      <td role="cell">
+                        <button id="myBtn"> Online survey</button>
+                      </td>
+                      <!-- The Modal -->
+                      <div class="modal" id="myModal">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                              <h4 class="modal-title">Online Survey</h4>
+                              <button
+                                type="button"
+                                class="btn-close"
+                                data-bs-dismiss="modal"
+                              ></button>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                              <p style="font-size: 14px">
+                                The Clark County School District Board of
+                                Trustees, through its ambassadors at HYA
+                                Superintendent Search, invites you to take a
+                                brief survey regarding the desired leadership
+                                attributes for the next Superintendent of CCSD.
+                                The survey will take 10-15 minutes to complete
+                                and your responses will remain confidential.
+                                Thank you in advance for your time, input, and
+                                support of CCSD. You can click on the link below
+                                or QR code. The survey closes after labor day,
+                                on September 3 at 10 AM PST.<br />
+                                <a
+                                  href="https://hyasurvey.com/CCSD"
+                                  target="_blank"
+                                  >https://hyasurvey.com/CCSD</a
+                                ><br />
+                                <img
+                                  class="masthead-avatar mb-5"
+                                  src="assets/img/QR-survey.png"
+                                  alt="..."
+                                  style="width: 200px; height: auto"
+                                />
+                              </p>
+                            </div>
+
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                              <span class="close">&times;</span>
+                              <!--         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button> -->
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </tr>
+                    <tr role="row">
+                      <td role="cell" width="auto;">
+                        September 4, 2024<br />at 4 p.m.
+                      </td>
+                      <td role="cell">
+                        <strong><a href="https://go.boarddocs.com/nv/ccsdlv/Board.nsf/goto?open&id=D8L8SW1FC5F1" target="_blank">Board Work Session</a>:</strong> Interview Protocols
+                        Workshop and Decisions
+                      </td>
+                    </tr>
+                    <tr role="row">
+                      <td role="cell" width="auto;">
+                        September 12, 2024<br />at 5 p.m.
+                      </td>
+                      <td role="cell">
+                        <strong><a href="https://go.boarddocs.com/nv/ccsdlv/Board.nsf/goto?open&id=D8RMR25C6990" target="_blank">Regular Board Meeting</a>:</strong>  DRAFT Leadership
+                        Profile Report presented to Board
+                        <ul>
+                          <li>A draft version of the Leadership Profile has been presented by HYA and can be accessed <a href="https://go.boarddocs.com/nv/ccsdlv/Board.nsf/files/D8ZUUR7DA92B/$file/09.12.24%20Ref.%203.01(B).pdf" target="_blank">here</a>.   After reading the profile, we welcome any feedback via this form:
+                          <a href="https://forms.gle/jotBqHKkQCAa2m749" target="_blank">https://forms.gle/jotBqHKkQCAa2m749</a>
+                          </li>
+                        </ul>
+                      </td>
+                    </tr>
+                    <tr role="row">
+                      <td role="cell" width="auto;">
+                        September 26, 2024 at 5 p.m
+                      </td>
+                      <td role="cell">
+                        <strong>Regular Board Meeting:</strong> <br> 
+                        <ul>
+                          <li><a href="https://go.boarddocs.com/nv/ccsdlv/Board.nsf/goto?open&id=D9DLBP553774" target="_blank">3.01 Superintendent Search</a></li>
+                          <li><a href="https://go.boarddocs.com/nv/ccsdlv/Board.nsf/goto?open&id=D9DLBQ553775" target="_blank">3.02 Superintendent Search Timeline</a></li>
+                        </ul>
+                      </td>
+                    </tr>
+                    <tr role="row">
+                      <td role="cell" width="auto;">
+                        September 30, 2024
+                      </td>
+                      <td role="cell">
+                        <strong>Final Superintendent Leadership Profile Report:</strong> <br> 
+                        <ul>
+                          <li>A final version of the Superintendent Leadership Profile Report can be accessed <a href="https://ccsd.net/district/superintendent-selection/assets/ForPublicationFinalCCSDLeadershipProfile.pdf" target="_blank">here</a></li>
+                          <li>After reading the profile, we welcome any feedback via this <a href="https://forms.gle/jotBqHKkQCAa2m749" target="_blank">form</a></li>
+                        </ul>
+                      </td>
+                    </tr>
+
+                    
+                    <tr role="row">
+                      <td role="cell" width="auto;">
+                        February 5, 2025<br />Closing at 5:00
+                        p.m. PST
+                      </td>
+                      <td role="cell">
+                        <a
+                          href="https://hyasearch.com/job/superintendent-clark-county-nv/"
+                          target="_target">Application deadline</a>
+                          <br>
+                      </td>
+                    </tr>
+                  
+
+                    <tr role="row">
+                      <td role="cell" width="auto;">
+                        February 5, 2025<br />
+                        at 4:00 p.m.
+                      </td>
+                      <td role="cell"><strong><a href="https://go.boarddocs.com/nv/ccsdlv/Board.nsf/goto?open&id=DD8AZ62A0F84" target="_blank">Work Session Meeting:</a></strong> 
+                        Review of Process, Leadership Profile, and Interview Protocols
+                      </td>
+                    </tr>
+                    
+
+                    
+                    <tr role="row">
+                      <td role="cell" width="auto;">
+                        February 18, 2025<br />
+                      </td>
+                      <td role="cell">
+                        <strong><a href="https://go.boarddocs.com/nv/ccsdlv/Board.nsf/goto?open&id=DDTKSM534B56">Special Meeting of the Board of School Trustees:</a></strong>
+                        <ul>
+                          <li><strong>Meeting location: </strong>Edward A. Greer Education Center, Board Room
+                          </li>
+                          <li><strong>Meeting time: </strong> 5:30 p.m.</li>
+                          <li><strong>Meeting topic: </strong> Presentation of the Slate and Selection of Candidates to Interview</li>
+                        </ul>
+                      </td>
+                    </tr>
+                  <!--
+                    <tr role="row">
+                      <td role="cell" width="auto;">
+                        February 18, 2025<br />
+                      </td>
+                      <td role="cell">
+                        <a href="https://go.boarddocs.com/nv/ccsdlv/Board.nsf/goto?open&id=DDTKSM534B56"><strong>Special Board Meeting</strong></a>: Presentation and discussion with Hazard, Young, Attea & Associates, and possible action on the approval of the proposed slate and/or including additional candidates, approval of the candidates to be interviewed, approval of the revised timeline of meetings inclusive of the community forum, approval of the process for the interviews inclusive of candidates meeting with the governance consultant, approval of the community feedback form, and approval of the costs associated for additional meetings. 
+                      </td>
+                    </tr>
+                  -->
+                    <tr role="row">
+                      <td role="cell" width="auto;">
+                       February 24, 2025<br />
+                      </td>
+                      <td role="cell">
+	                      <strong>Special Meeting of the Board of School Trustees:</strong>                       
+	                      <ul>
+                          <li><strong>Meeting location: </strong>Edward A. Greer Education Center, Board Room</li>
+                          <li><strong>Meeting time:</strong> 5:00 p.m.</li>
+                          <li><strong>Meeting topic:</strong> Board First Round Candidate Interviews (Performance Interview)</li>
+                          <ul>
+                            <li><a href="https://go.boarddocs.com/nv/ccsdlv/Board.nsf/goto?open&id=DE2M335936F0" target="_blank">2.01 Superintendent Search</a></li>
+                            <li><a href="https://go.boarddocs.com/nv/ccsdlv/Board.nsf/goto?open&id=DE2MKV5BAE2A" target="_blank">2.02 Superintendent Search</a></li>
+                           </ul>
+                        </ul>
+                        
+                      </td>
+                    </tr>
+                  <!--
+
+                    <tr role="row">
+                      <td role="cell" width="auto;">
+                       February 24, 2025<br />
+                      </td>
+                      <td role="cell">
+	                     <strong>Special Meeting of the Board of School Trustees:</strong>
+                       <ul>
+                        <li><a href="https://go.boarddocs.com/nv/ccsdlv/Board.nsf/goto?open&id=DE2M335936F0" target="_blank">2.01</a></li>
+                        <li><a href="https://go.boarddocs.com/nv/ccsdlv/Board.nsf/goto?open&id=DE2MKV5BAE2A" target="_blank">2.02</a></li>
+                       </ul>
+                      </td>
+                    </tr>
+                  -->
+                    
+                    <tr role="row">
+                      <td role="cell" width="auto;">
+                        February 25, 2025<br />
+                      </td>
+                      <td role="cell">
+	                  <strong>Special Meeting of the Board of School Trustees:</strong> 
+                        <ul>
+                          <li><strong>Meeting location:</strong> Edward A. Greer Education Center, Board Room</li>
+                          <li><strong>Meeting time:</strong> 5:00 p.m.</li>
+                          <li><strong>Meeting topic:</strong> Board First Round Candidate Interviews (Performance Interview)/Selection of Candidates Moving Forward</li>
+                          <ul>
+                            <li><a href="https://go.boarddocs.com/nv/ccsdlv/Board.nsf/goto?open&id=DE2N4G5E1C3E" target="_blank">2.01 Superintendent Search</a></li>
+                            <li><a href="https://go.boarddocs.com/nv/ccsdlv/Board.nsf/goto?open&id=DE2N6U5E73DB" target="_blank">2.02 Superintendent Search</a></li>
+                            <li><a href="https://go.boarddocs.com/nv/ccsdlv/Board.nsf/goto?open&id=DE2N7N5E9391" target="_blank">2.03 Superintendent Search</a></li>
+                          </ul>   
+                        </ul>
+                      </td>
+                    </tr>
+            
+                    
+                    <tr role="row">
+                      <td role="cell" width="auto;">
+                        March 10, 2025<br /><!-- <strong> --><!-- </strong> -->
+                      </td>
+                      <td role="cell">
+	                  <strong>Community Forums with the Candidates:</strong>
+                        <ul>
+                          <li><strong>Location: </strong>Rancho High School</li>
+                          <li><strong>Time:</strong> 5:00 p.m.</li>
+                        </ul>
+                      </td>
+                    </tr>
+                    <tr role="row">
+                      <td role="cell" width="auto;">
+                        March 11, 2025<br /><!-- <strong> --><!-- </strong> -->
+                      </td>
+                      <td role="cell">
+	                 <strong>Special Meeting of the Board of School Trustees:</strong> 
+                        <ul>
+                          <li><strong>Meeting location:</strong> Edward A. Greer Education Center, Board Room</li>
+                          <li><strong>Time:</strong> 5:00 p.m. </li>
+                          <li><strong>Meeting topic: </strong> Finalists interviews and debrief</li>
+                        </ul>
+                      </td>
+                    </tr>
+                    <tr role="row">
+                      <td role="cell" width="auto;">
+                        March 13, 2025<br /><!-- <strong> --><!-- </strong> -->
+                      </td>
+                      <td role="cell">
+	                 <strong>Regular Board Meeting:</strong> 
+                        <ul>
+                          <li><strong>Meeting location: </strong> Edward A. Greer Education Center, Board Room</li>
+                          <li><strong>Time:</strong> 5:00 p.m. </li>
+                          <li><strong>Meeting topic:</strong> Selection of Superintendent</li>
+                        </ul>
+                      </td>
+                    </tr>
+                </tbody>
+                </table>
+           
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#panelsStayOpen-collapseTwo"
+                aria-expanded="false"
+                aria-controls="panelsStayOpen-collapseTwo"
+              >
+                <div align="center">
+                  <h2
+                    class="masthead-heading text-uppercase mb-0"
+                    style="color: #666; padding-bottom: 1.5rem"
+                  >
+                    Leadership Transition and Search Firm Selection
+                  </h2>
+                </div>
+              </button>
+            </h2>
+            <div
+              id="panelsStayOpen-collapseTwo"
+              class="accordion-collapse collapse"
+              aria-labelledby="panelsStayOpen-headingTwo"
+            >
+              <div class="accordion-body">
+                <table role="table" class="table table-striped">
+                  <thead role="rowgroup">
+                    <tr role="row">
+                      <th role="columnheader">Date</th>
+                      <th role="columnheader">Event</th>
+                    </tr>
+                  </thead>
+
+                  <tbody role="rowgroup">
+                    <tr role="row">
+                      <td role="cell">February 22, 2024</td>
+                      <td role="cell">
+                        Board approved the acceptance of the Conditional
+                        Resignation of Superintendent Jara.
+                      </td>
+                    </tr>
+                    <tr role="row">
+                      <td>February 22, 2024</td>
+                      <td>
+                        Board approved the appointment of Dr. Larsen-Mitchell as
+                        Interim Superintendent.
+                      </td>
+                    </tr>
+
+                    <tr role="row">
+                      <td role="cell">April 3, 2024</td>
+                      <td role="cell">
+                        Board approved Superintendent Search Firm Request for
+                        Proposal.
+                      </td>
+                    </tr>
+                    <tr role="row">
+                      <td role="cell">April 16, through May 9, 2024</td>
+                      <td role="cell">
+                        Superintendent Search Firm Request for Proposal active
+                        on Bonfire.
+                      </td>
+                    </tr>
+                    <tr role="row">
+                      <td role="cell">May 1, 2024</td>
+                      <td role="cell">
+                        Board reviewed the Superintendent Search Process
+                        Tentative Timeline.
+                      </td>
+                    </tr>
+                    <tr role="row">
+                      <td role="cell">May 9, 2024</td>
+                      <td role="cell">
+                        Board approved the draft rubric provided by the
+                        Purchasing Department..
+                      </td>
+                    </tr>
+                    <tr role="row">
+                      <td role="cell">May 15, 2024</td>
+                      <td role="cell">
+                        Board reviewed respondent proposals to Superintendent
+                        Search Firm Request for Proposal.
+                      </td>
+                    </tr>
+                    <tr role="row">
+                      <td role="cell">May 16, 2024</td>
+                      <td role="cell">
+                        Board approved the Interim Superintendent Employment
+                        Agreement for Dr. Larsen-Mitchell.
+                      </td>
+                    </tr>
+                    <tr role="row">
+                      <td role="cell">May 29, 2024</td>
+                      <td role="cell">
+                        Board received presentations from and conducted
+                        interviews with three Superintendent Search Firm
+                        finalists.
+                      </td>
+                    </tr>
+                    <tr role="row">
+                      <td role="cell">May 29, 2024</td>
+                      <td role="cell">
+                        Board approved the Superintendent Search Firm - Hazard,
+                        Young, Attea &amp; Associates.
+                      </td>
+                    </tr>
+                    <tr role="row">
+                      <td role="cell" width="auto;">June 13, 2024</td>
+                      <td role="cell">
+                        Board approved Superintendent Search Firm Bid Award
+                        Recommendation.
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+   
+    </section>
+    <div  align="right"  style="font-size: 12px; padding-bottom: 20px;padding-right: 10px;">
+                  Revised Wednesday, February 26, 2025
+                </div>
+    <!-- Footer-->
+    <footer class="footer text-center">
+      <div class="container">
+        <div class="row">
+          <!-- Footer Location-->
+          <div class="col-lg-4 mb-5 mb-lg-0">
+            <h4 class="text-uppercase mb-4">Contact Us</h4>
+            <p class="lead mb-0">
+              5100 W. Sahara Ave<br />
+              Las Vegas, NV 89146<br />
+              <br />
+              Phone: (702) 799-8484<br />
+              Fax: (702) 799-7946<br />
+              Office Hours: 7:00 am – 5:00 pm
+            </p>
+          </div>
+          <!-- Footer Useful Links-->
+          <div class="col-lg-4 mb-5 mb-lg-0">
+            <h4 class="text-uppercase mb-4">Useful Links</h4>
+            <a class="nav-link" href="https://ccsd.net/district/calendar/"
+              >Calendar</a
+            >
+            <a
+              class="nav-link"
+              href="https://ccsd.net/parents/infinite-campus-choice.php"
+              >Infinite Campus</a
+            >
+            <a class="nav-link" href="https://ccsd.net/students/safevoice/"
+              >SafeVoice</a
+            >
+            <a class="nav-link" href="https://ccsd.net/contactus/"
+              >Contact Us</a
+            >
+          </div>
+          <!-- Footer Legal Links-->
+          <div class="col-lg-4">
+            <h4 class="text-uppercase mb-4">Legal</h4>
+            <a
+              class="nav-link"
+              href="https://ccsd.net/district/info/title-ix.php"
+              >Title IX</a
+            >
+            <a
+              class="nav-link"
+              href="https://ccsd.net/district/info/non-discrimination/"
+              >Notice of Nondiscrimination</a
+            >
+            <a
+              class="nav-link"
+              href="https://ccsd.net/district/accessibility-statement/"
+              >Accessibility Statement</a
+            >
+            <a
+              class="nav-link"
+              href="https://www.ccsd.net/district/anti-racism/"
+              >Policy 5139 Anti-Racism, Equity, and Inclusion</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- Copyright Section-->
+    <div class="copyright py-4 text-center text-white">
+      <div class="container">
+        <small
+          >Copyright &copy; Clark County School District. All Rights
+          Reserved.</small
+        >
+      </div>
+    </div>
+
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+    <!-- * *                               SB Forms JS                               * *-->
+    <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    <script>
+      // Get the modal
+      var modal = document.getElementById("myModal");
+
+      // Get the button that opens the modal
+      var btn = document.getElementById("myBtn");
+
+      // Get the <span> element that closes the modal
+      var span = document.getElementsByClassName("close")[0];
+
+      // When the user clicks the button, open the modal
+      btn.onclick = function () {
+        modal.style.display = "block";
+      };
+
+      // When the user clicks on <span> (x), close the modal
+      span.onclick = function () {
+        modal.style.display = "none";
+      };
+
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function (event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      };
+    </script>
+  </body>
+</html>
