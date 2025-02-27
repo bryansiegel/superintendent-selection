@@ -555,7 +555,7 @@
 
 
 
-<div  align="right"  style="font-size: 12px; padding-bottom: 20px;padding-right: 10px;">
+<div  align="right"  style="font-size: 12px; padding-bottom: 20px;padding-right: 10px;" class="pt-5">
     Revised Wednesday, February 26, 2025
 </div>
 <?php include('includes/footer.php'); ?>

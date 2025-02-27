@@ -63,7 +63,7 @@
 <div class="copyright py-4 text-center text-white">
     <div class="container">
         <small
-        >Copyright &copy; Clark County School District. All Rights
+        >Copyright &copy; <?php echo date("Y"); ?> Clark County School District. All Rights
             Reserved.</small
         >
     </div>
